@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جدول امتحانات مدرسة محمد بن سليمان الغافري</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* الخطوط */
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+        /* التصميم العام */
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(-45deg, #6a11cb, #2575fc, #4facfe, #00f2fe);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        header {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        header .header-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 10px 0;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin: 10px 0;
+        }
+
+        .schedule-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .exam-info {
+            background: linear-gradient(135deg, #ffffff, #f0f4f8);
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .exam-info:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #6a11cb;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+
+        .timer {
+            font-size: 1.2em;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #333, #000);
+            color: white;
+            padding: 15px;
+            font-size: 0.9em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffdd57;
+        }
+
+        /* تصميم متجاوب للهواتف */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .schedule-btn {
+                top: 10px;
+                left: 10px;
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+
+            .exam-info {
+                padding: 15px;
+            }
+
+            .timer {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="https://mohdschool.github.io/7211/" class="schedule-btn">
+            <i class="fas fa-calendar-alt"></i> برنامج الجدول
+        </a>
+        <div class="header-content">
+            <img src="https://e.top4top.io/p_3302it4a31.jpg" alt="شعار المدرسة" class="logo">
+            <h1>جدول امتحانات نهاية الفصل الدراسي الأول</h1>
+            <h2>غدا الثلاثاء 21 يناير 2025</h2>
+        </div>
+    </header>
+
+    <main>
+        <nav>
+            <a href="#"><i class="fas fa-home"></i> الرئيسية</a>
+            <a href="#"><i class="fas fa-info-circle"></i> عن المدرسة</a>
+            <a href="#"><i class="fas fa-envelope"></i> اتصل بنا</a>
+        </nav>
+
+        <div class="exam-info">
+            <h3><i class="fas fa-book"></i> صفوف الخامس إلى الثامن</h3>
+            <p>مادة: اللغة العربية</p>
+            <p>مدة الاختبار: ساعتان</p>
+            <div class="timer" id="timer-arabic">
+                <p><i class="fas fa-clock"></i> الوقت المتبقي لبدء الامتحان: <span id="countdown-arabic"></span></p>
+                <p><i class="fas fa-hourglass-end"></i> الوقت المتبقي للانتهاء: <span id="remaining-arabic"></span></p>
+            </div>
+        </div>
+
+        <div class="exam-info">
+            <h3><i class="fas fa-atom"></i> صفوف التاسع</h3>
+            <p>مادة: الفيزياء</p>
+            <p>مدة الاختبار: ساعة ونصف</p>
+            <div class="timer" id="timer-physics-9">
+                <p><i class="fas fa-clock"></i> الوقت المتبقي لبدء الامتحان: <span id="countdown-physics-9"></span></p>
+                <p><i class="fas fa-hourglass-end"></i> الوقت المتبقي للانتهاء: <span id="remaining-physics-9"></span></p>
+            </div>
+        </div>
+
+        <div class="exam-info">
+            <h3><i class="fas fa-atom"></i> صفوف العاشر</h3>
+            <p>مادة: الفيزياء</p>
+            <p>مدة الاختبار: ساعتان</p>
+            <div class="timer" id="timer-physics-10">
+                <p><i class="fas fa-clock"></i> الوقت المتبقي لبدء الامتحان: <span id="countdown-physics-10"></span></p>
+                <p><i class="fas fa-hourglass-end"></i> الوقت المتبقي للانتهاء: <span id="remaining-physics-10"></span></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>مدرسة محمد بن سليمان الغافري - جميع الحقوق محفوظة &copy; 2025</p>
+    </footer>
+
+    <script>
+        // تاريخ ووقت بدء الامتحانات
+        const examDate = new Date('2025-01-21T08:00:00'); // افترض أن الامتحان يبدأ الساعة 8 صباحًا
+
+        // مدة الامتحانات بالمللي ثانية
+        const arabicDuration = 2 * 60 * 60 * 1000; // ساعتان
+        const physics9Duration = 1.5 * 60 * 60 * 1000; // ساعة ونصف
+        const physics10Duration = 2 * 60 * 60 * 1000; // ساعتان
+
+        // عناصر HTML
+        const countdownArabic = document.getElementById('countdown-arabic');
+        const remainingArabic = document.getElementById('remaining-arabic');
+        const countdownPhysics9 = document.getElementById('countdown-physics-9');
+        const remainingPhysics9 = document.getElementById('remaining-physics-9');
+        const countdownPhysics10 = document.getElementById('countdown-physics-10');
+        const remainingPhysics10 = document.getElementById('remaining-physics-10');
+
+        function updateTimers() {
+            const now = new Date();
+            const timeUntilExam = examDate - now;
+
+            if (timeUntilExam > 0) {
+                // العد التنازلي لبدء الامتحان
+                const hours = Math.floor(timeUntilExam / (1000 * 60 * 60));
+                const minutes = Math.floor((timeUntilExam % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeUntilExam % (1000 * 60)) / 1000);
+
+                countdownArabic.textContent = `${hours} ساعات ${minutes} دقائق ${seconds} ثواني`;
+                countdownPhysics9.textContent = `${hours} ساعات ${minutes} دقائق ${seconds} ثواني`;
+                countdownPhysics10.textContent = `${hours} ساعات ${minutes} دقائق ${seconds} ثواني`;
+
+                // إخفاء العد التنازلي للانتهاء
+                remainingArabic.textContent = "لم يبدأ الامتحان بعد";
+                remainingPhysics9.textContent = "لم يبدأ الامتحان بعد";
+                remainingPhysics10.textContent = "لم يبدأ الامتحان بعد";
+            } else {
+                // العد التنازلي للانتهاء
+                const arabicEndTime = examDate.getTime() + arabicDuration;
+                const physics9EndTime = examDate.getTime() + physics9Duration;
+                const physics10EndTime = examDate.getTime() + physics10Duration;
+
+                updateRemainingTime(arabicEndTime, remainingArabic);
+                updateRemainingTime(physics9EndTime, remainingPhysics9);
+                updateRemainingTime(physics10EndTime, remainingPhysics10);
+
+                // إخفاء العد التنازلي لبدء الامتحان
+                countdownArabic.textContent = "بدأ الامتحان";
+                countdownPhysics9.textContent = "بدأ الامتحان";
+                countdownPhysics10.textContent = "بدأ الامتحان";
+            }
+        }
+
+        function updateRemainingTime(endTime, element) {
+            const now = new Date();
+            const timeRemaining = endTime - now;
+
+            if (timeRemaining > 0) {
+                const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+                element.textContent = `${hours} ساعات ${minutes} دقائق ${seconds} ثواني`;
+            } else {
+                element.textContent = "انتهى الامتحان";
+            }
+        }
+
+        setInterval(updateTimers, 1000);
+        updateTimers(); // تحديث العدادات فور تحميل الصفحة
+    </script>
+</body>
+</html>
