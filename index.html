@@ -20,7 +20,8 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            overflow-x: hidden; /* لمنع التمرير الأفقي */
+            overflow-x: hidden;
+            position: relative;
         }
 
         @keyframes gradientBG {
@@ -35,12 +36,41 @@
             }
         }
 
+        /* نجوم متحركة في الخلفية */
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 0.5;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.2);
+            }
+        }
+
         header {
             background: linear-gradient(135deg, #6a11cb, #2575fc);
             color: white;
             padding: 40px 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             position: relative;
+            z-index: 1;
         }
 
         header .header-content {
@@ -55,6 +85,16 @@
             border-radius: 50%;
             border: 3px solid white;
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            animation: float 3s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         h1, h2, h3 {
@@ -79,6 +119,16 @@
         h2 {
             font-size: 1.8em;
             margin: 10px 0;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         .schedule-btn {
@@ -95,6 +145,16 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         .schedule-btn:hover {
@@ -108,7 +168,7 @@
             margin: 0 auto;
             position: relative;
             z-index: 1;
-            padding-bottom: 100px; /* إضافة مساحة أسفل المحتوى */
+            padding-bottom: 100px;
         }
 
         .exam-info {
@@ -118,6 +178,8 @@
             border-radius: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .exam-info:hover {
@@ -130,12 +192,23 @@
             color: #6a11cb;
             margin-bottom: 10px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
         }
 
         p {
             font-size: 1.1em;
             margin: 5px 0;
             color: #444;
+            animation: fadeIn 1s ease-in-out;
         }
 
         .timer {
@@ -146,6 +219,7 @@
             color: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
         }
 
         .timer p {
@@ -183,6 +257,7 @@
             text-decoration: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             font-weight: 700;
+            animation: pulse 2s infinite;
         }
 
         .test-btn:hover {
@@ -254,6 +329,15 @@
     </style>
 </head>
 <body>
+    <div class="stars">
+        <!-- نجوم متحركة -->
+        <div class="star" style="top: 10%; left: 20%; width: 2px; height: 2px;"></div>
+        <div class="star" style="top: 30%; left: 50%; width: 3px; height: 3px;"></div>
+        <div class="star" style="top: 50%; left: 70%; width: 2px; height: 2px;"></div>
+        <div class="star" style="top: 70%; left: 40%; width: 3px; height: 3px;"></div>
+        <div class="star" style="top: 90%; left: 10%; width: 2px; height: 2px;"></div>
+    </div>
+
     <header>
         <a href="https://mohdschool.github.io/7211/" class="schedule-btn">
             <i class="fas fa-calendar-alt"></i> برنامج الجدول
