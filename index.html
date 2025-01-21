@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>برنامج رقمي لجدول امتحانات مدرسة محمد بن سليمان الغافري</title>
+    <title>جدول امتحانات مدرسة محمد بن سليمان الغافري</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* الخطوط */
@@ -20,6 +20,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            overflow-x: hidden; /* لمنع التمرير الأفقي */
         }
 
         @keyframes gradientBG {
@@ -63,6 +64,16 @@
         h1 {
             font-size: 2.5em;
             margin: 10px 0;
+            animation: zoomInOut 3s infinite ease-in-out;
+        }
+
+        @keyframes zoomInOut {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         h2 {
@@ -95,6 +106,9 @@
             padding: 20px;
             max-width: 800px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            padding-bottom: 100px; /* إضافة مساحة أسفل المحتوى */
         }
 
         .exam-info {
@@ -112,16 +126,16 @@
         }
 
         h3 {
-            font-size: 2em;
+            font-size: 1.5em;
             color: #6a11cb;
             margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* ظل للنص */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
         p {
-            font-size: 2em;
+            font-size: 1.1em;
             margin: 5px 0;
-            color: #444; /* لون أغمق للنص */
+            color: #444;
         }
 
         .timer {
@@ -136,7 +150,23 @@
 
         .timer p {
             margin: 5px 0;
-            color: white; /* لون أبيض للنص داخل العد التنازلي */
+            color: white;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar div {
+            height: 100%;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            border-radius: 5px;
+            transition: width 1s ease;
         }
 
         .test-btn {
@@ -152,7 +182,7 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             text-decoration: none;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-weight: 700; /* خط أكثر سماكة */
+            font-weight: 700;
         }
 
         .test-btn:hover {
@@ -163,11 +193,13 @@
         footer {
             background: linear-gradient(135deg, #333, #000);
             color: white;
-            padding: 1px;
+            padding: 15px;
             font-size: 0.9em;
+            width: 100%;
             position: fixed;
             bottom: 0;
-            width: 100%;
+            left: 0;
+            z-index: 1000;
         }
 
         nav {
@@ -248,8 +280,11 @@
                 <p><i class="fas fa-clock"></i> الوقت المتبقي لبدء الامتحان: <span id="countdown-biology-9"></span></p>
                 <p><i class="fas fa-hourglass-end"></i> الوقت المتبقي للانتهاء: <span id="remaining-biology-9"></span></p>
             </div>
-            <a href="https://cdn3.me-qr.com/pdf/83520329-7b20-445f-8d47-fc34b77746a1.pdf" class="test-btn">
-                <i class="fas fa-file-pdf"></i>  تجميع اختبارت سابقة
+            <div class="progress-bar">
+                <div id="progress-biology-9"></div>
+            </div>
+            <a href="https://cdn3.me-qr.com/pdf/aff0785f-516b-48fb-941f-28537ab7a419.pdf" class="test-btn">
+                <i class="fas fa-file-pdf"></i> نموذج اختبار سابق
             </a>
         </div>
 
@@ -261,8 +296,11 @@
                 <p><i class="fas fa-clock"></i> الوقت المتبقي لبدء الامتحان: <span id="countdown-biology-10"></span></p>
                 <p><i class="fas fa-hourglass-end"></i> الوقت المتبقي للانتهاء: <span id="remaining-biology-10"></span></p>
             </div>
-            <a href="https://cdn3.me-qr.com/pdf/f0c1c853-e28d-49be-8153-38cd5f88f987.pdf" class="test-btn">
-                <i class="fas fa-file-pdf"></i> اختبار تجريبي
+            <div class="progress-bar">
+                <div id="progress-biology-10"></div>
+            </div>
+            <a href="https://cdn3.me-qr.com/pdf/aff0785f-516b-48fb-941f-28537ab7a419.pdf" class="test-btn">
+                <i class="fas fa-file-pdf"></i> نموذج اختبار سابق
             </a>
         </div>
     </main>
@@ -282,8 +320,10 @@
         // عناصر HTML
         const countdownBiology9 = document.getElementById('countdown-biology-9');
         const remainingBiology9 = document.getElementById('remaining-biology-9');
+        const progressBiology9 = document.getElementById('progress-biology-9');
         const countdownBiology10 = document.getElementById('countdown-biology-10');
         const remainingBiology10 = document.getElementById('remaining-biology-10');
+        const progressBiology10 = document.getElementById('progress-biology-10');
 
         function updateTimers() {
             const now = new Date();
@@ -301,13 +341,17 @@
                 // إخفاء العد التنازلي للانتهاء
                 remainingBiology9.textContent = "لم يبدأ الامتحان بعد";
                 remainingBiology10.textContent = "لم يبدأ الامتحان بعد";
+
+                // تحديث شريط التقدم
+                progressBiology9.style.width = '0%';
+                progressBiology10.style.width = '0%';
             } else {
                 // العد التنازلي للانتهاء
                 const biology9EndTime = examDate.getTime() + biology9Duration;
                 const biology10EndTime = examDate.getTime() + biology10Duration;
 
-                updateRemainingTime(biology9EndTime, remainingBiology9);
-                updateRemainingTime(biology10EndTime, remainingBiology10);
+                updateRemainingTime(biology9EndTime, remainingBiology9, progressBiology9, biology9Duration);
+                updateRemainingTime(biology10EndTime, remainingBiology10, progressBiology10, biology10Duration);
 
                 // إخفاء العد التنازلي لبدء الامتحان
                 countdownBiology9.textContent = "بدأ الامتحان";
@@ -315,7 +359,7 @@
             }
         }
 
-        function updateRemainingTime(endTime, element) {
+        function updateRemainingTime(endTime, element, progressBar, duration) {
             const now = new Date();
             const timeRemaining = endTime - now;
 
@@ -324,8 +368,13 @@
                 const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
                 element.textContent = `${hours} ساعات ${minutes} دقائق ${seconds} ثواني`;
+
+                // تحديث شريط التقدم
+                const progress = ((duration - timeRemaining) / duration) * 100;
+                progressBar.style.width = `${progress}%`;
             } else {
                 element.textContent = "انتهى الامتحان";
+                progressBar.style.width = '100%';
             }
         }
 
