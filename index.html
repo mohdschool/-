@@ -1,482 +1,450 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جدول امتحانات مدرسة محمد بن سليمان الغافري</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>بوابة استعلام الشهادات - مدرسة أحمد بن حمود البوسعيدي</title>
     <style>
-        /* الخطوط */
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
-
-        /* التصميم العام */
         body {
             font-family: 'Cairo', sans-serif;
-            background: linear-gradient(-45deg, #6a11cb, #2575fc, #4facfe, #00f2fe);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: #333;
+            background: linear-gradient(135deg, #3a6186, #89253e);
             text-align: center;
+            color: white;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
             overflow-x: hidden;
+            animation: fadeIn 1.5s ease-in-out;
             position: relative;
         }
-
-        @keyframes gradientBG {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
         }
-
-        /* نجوم متحركة في الخلفية */
-        .stars {
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .header {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.95), rgba(26, 37, 47, 0.95));
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            animation: slideDown 1s ease-in-out;
+            position: relative;
+            border-bottom: 3px solid #FFD700;
+            z-index: 10;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.7rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #FFD700, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: none;
+        }
+        .header h2 {
+            margin: 10px 0;
+            font-size: 1.6rem;
+            color: #FFD700;
+        }
+        .logo {
+            width: 120px;
+            height: auto;
+            margin: 10px;
+            border-radius: 50%;
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            transition: all 0.5s ease;
+        }
+        .logo:hover {
+            transform: rotate(360deg);
+        }
+        .marquee {
+            background: linear-gradient(135deg, #FFD700, #f1c40f);
+            color: #2c3e50;
+            padding: 16px 0;
+            font-size: 1.1rem;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            z-index: 10;
+        }
+        .marquee::before, .marquee::after {
+            content: '✨';
+            position: absolute;
+            font-size: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .marquee::before { left: 20px; }
+        .marquee::after { right: 20px; }
+        .marquee span {
+            display: inline-block;
+            animation: marquee-reverse 20s linear infinite;
+        }
+        @keyframes marquee-reverse {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
+        }
+        .container {
+            max-width: 85%;
+            margin: 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 
+                        0 5px 15px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            color: #2c3e50;
+            animation: fadeInContainer 1s ease-in-out;
+            transform: perspective(1000px) translateZ(0);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+        .container:hover {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3), 
+                        0 10px 20px rgba(0, 0, 0, 0.2),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            transform: perspective(1000px) translateZ(20px);
+        }
+        @keyframes fadeInContainer {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        input {
+            width: 92%;
+            padding: 14px;
+            margin: 12px 0;
+            border: 2px solid #3a6186;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            background-color: #f8f9fa;
+            font-family: 'Cairo', sans-serif;
+            text-align: right;
+            direction: rtl;
+        }
+        input:focus {
+            border-color: #27ae60;
+            box-shadow: 0 0 10px rgba(39, 174, 96, 0.5);
+            outline: none;
+        }
+        button {
+            animation: pulse 1.5s infinite;
+            background: linear-gradient(135deg, #27ae60, #1a9248);
+            color: white;
+            padding: 15px 24px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(30deg);
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: linear-gradient(135deg, #1a9248, #27ae60);
+            box-shadow: 0 0 15px rgba(39, 174, 96, 0.7);
+        }
+        button:hover::after {
+            left: 100%;
+        }
+        #result {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-left: 5px solid #3a6186;
+            transition: all 0.3s ease;
+        }
+        #result:hover {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-3px);
+        }
+        #result p {
+            padding: 8px;
+            margin: 5px 0;
+            border-bottom: 1px dashed #ddd;
+            transition: all 0.2s;
+        }
+        #result p:hover {
+            background-color: rgba(58, 97, 134, 0.1);
+            padding-left: 15px;
+        }
+        .footer {
+            margin-top: 50px;
+            padding: 25px;
+            background: linear-gradient(135deg, #2c3e50, #1a252f);
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            animation: fadeInFooter 1s ease-in-out;
+            position: relative;
+            z-index: 10;
+        }
+        .footer::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1;
+            height: 3px;
+            background: linear-gradient(to right, #3a6186, #FFD700, #89253e);
         }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 2s infinite ease-in-out;
+        @keyframes fadeInFooter {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        @keyframes twinkle {
-            0%, 100% {
-                opacity: 0.5;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.2);
-            }
+        .result-animation {
+            animation: fadeInResult 1s ease-in-out;
         }
-
-        header {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            padding: 40px 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        @keyframes fadeInResult {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        label {
             position: relative;
+            display: inline-block;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+            margin-bottom: 10px;
+        }
+        label::after {
+            content: '🔍';
+            position: absolute;
+            left: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.5rem;
+            animation: searchPulse 2s infinite;
+        }
+        @keyframes searchPulse {
+            0% { transform: translateY(-50%) scale(1); }
+            50% { transform: translateY(-50%) scale(1.2); }
+            100% { transform: translateY(-50%) scale(1); }
+        }
+
+        /* تأثيرات الخلفية الجديدة */
+        .bg-bubbles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
+            overflow: hidden;
         }
-
-        header .header-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        header .logo {
-            width: 120px;
-            height: auto;
-            margin-bottom: 20px;
+        .bg-bubbles li {
+            position: absolute;
+            list-style: none;
+            display: block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            bottom: -160px;
+            animation: square 25s infinite;
+            transition-timing-function: linear;
             border-radius: 50%;
-            border: 3px solid white;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-            animation: float 3s infinite ease-in-out;
         }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
+        .bg-bubbles li:nth-child(1) {
+            left: 10%;
+            width: 80px;
+            height: 80px;
+            animation-delay: 0s;
+            animation-duration: 17s;
         }
-
-        h1, h2, h3 {
-            font-weight: 700;
+        .bg-bubbles li:nth-child(2) {
+            left: 20%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 2s;
+            animation-duration: 12s;
         }
-
-        h1 {
-            font-size: 2.5em;
-            margin: 10px 0;
-            animation: zoomInOut 3s infinite ease-in-out;
+        .bg-bubbles li:nth-child(3) {
+            left: 25%;
+            animation-delay: 4s;
         }
-
-        @keyframes zoomInOut {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
+        .bg-bubbles li:nth-child(4) {
+            left: 40%;
+            width: 60px;
+            height: 60px;
+            animation-delay: 0s;
+            animation-duration: 18s;
         }
-
-        h2 {
-            font-size: 1.8em;
-            margin: 10px 0;
-            animation: fadeIn 2s ease-in-out;
+        .bg-bubbles li:nth-child(5) {
+            left: 70%;
         }
-
-        @keyframes fadeIn {
+        .bg-bubbles li:nth-child(6) {
+            left: 80%;
+            width: 120px;
+            height: 120px;
+            animation-delay: 3s;
+        }
+        .bg-bubbles li:nth-child(7) {
+            left: 32%;
+            width: 160px;
+            height: 160px;
+            animation-delay: 7s;
+        }
+        .bg-bubbles li:nth-child(8) {
+            left: 55%;
+            width: 20px;
+            height: 20px;
+            animation-delay: 15s;
+            animation-duration: 40s;
+        }
+        .bg-bubbles li:nth-child(9) {
+            left: 25%;
+            width: 10px;
+            height: 10px;
+            animation-delay: 2s;
+            animation-duration: 40s;
+        }
+        .bg-bubbles li:nth-child(10) {
+            left: 90%;
+            width: 160px;
+            height: 160px;
+            animation-delay: 11s;
+        }
+        @keyframes square {
             0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
                 opacity: 0;
             }
-            100% {
-                opacity: 1;
-            }
         }
 
-        .schedule-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .schedule-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        main {
-            padding: 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-            padding-bottom: 100px;
-        }
-
-        .exam-info {
-            background: linear-gradient(135deg, #ffffff, #f0f4f8);
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .exam-info:hover {
-            transform: scale(1.02);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-        }
-
-        h3 {
-            font-size: 1.5em;
-            color: #6a11cb;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-            animation: slideIn 1s ease-in-out;
-        }
-
-        @keyframes slideIn {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(0);
-            }
-        }
-
-        p {
-            font-size: 1.1em;
-            margin: 5px 0;
-            color: #444;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .timer {
-            font-size: 1.2em;
-            margin-top: 15px;
-            padding: 10px;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .timer p {
-            margin: 5px 0;
-            color: white;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            margin-top: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar div {
-            height: 100%;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            border-radius: 5px;
-            transition: width 1s ease;
-        }
-
-        .test-btn {
-            display: block;
-            margin: 15px auto 0;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1em;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-decoration: none;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            font-weight: 700;
-            animation: pulse 2s infinite;
-        }
-
-        .test-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        footer {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            padding: 15px;
-            font-size: 1em;
-            width: 100%;
+        /* تأثير الضوء المتحرك */
+        .light-beam {
             position: fixed;
-            bottom: 0;
+            top: 0;
             left: 0;
-            z-index: 1000;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(255,255,255,0.03) 0%,
+                rgba(255,255,255,0) 50%,
+                rgba(255,255,255,0.03) 100%
+            );
+            background-size: 200% 200%;
+            animation: lightBeam 15s ease infinite;
+            z-index: 2;
+            pointer-events: none;
         }
-
-        footer p {
-            margin: 0;
-            font-weight: 700;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            color: white; /* لون الخط أبيض */
-            animation: fadeIn 2s ease-in-out;
-        }
-
-        nav {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1em;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #ffdd57;
-        }
-
-        /* تصميم متجاوب للهواتف */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            h2 {
-                font-size: 1.5em;
-            }
-
-            .schedule-btn {
-                top: 10px;
-                left: 10px;
-                font-size: 0.9em;
-                padding: 8px 16px;
-            }
-
-            .exam-info {
-                padding: 15px;
-            }
-
-            .timer {
-                font-size: 1em;
-            }
-
-            .test-btn {
-                font-size: 0.9em;
-                padding: 8px 16px;
-            }
-
-            footer {
-                font-size: 0.9em;
-            }
+        @keyframes lightBeam {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
         }
     </style>
+    <script>
+        // إنشاء تأثيرات الخلفية عند تحميل الصفحة
+        window.onload = function() {
+            createBackgroundEffects();
+        };
+
+        function createBackgroundEffects() {
+            // إنشاء الفقاعات
+            const bubblesContainer = document.createElement('ul');
+            bubblesContainer.className = 'bg-bubbles';
+            
+            for (let i = 0; i < 10; i++) {
+                const bubble = document.createElement('li');
+                bubblesContainer.appendChild(bubble);
+            }
+            
+            document.body.appendChild(bubblesContainer);
+
+            // إنشاء شعاع الضوء
+            const lightBeam = document.createElement('div');
+            lightBeam.className = 'light-beam';
+            document.body.appendChild(lightBeam);
+        }
+
+        async function searchCertificate() {
+            const civilId = document.getElementById('civilId').value.trim();
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '⏳ جاري البحث...';
+
+            const apiUrl = "https://script.google.com/macros/s/AKfycbxrU3jiFu8S4ynUk8Uh-KVQZI4HQCGU4rblMRq3wJ3dmz4gSuL80zp35LcpG1cj_h74/exec" + civilId;
+
+            try {
+                const response = await fetch(apiUrl);
+                const student = await response.json();
+
+                if (student && student.civilId) {
+                    resultDiv.innerHTML = `
+                        <h3 style="color: #27ae60;">✅ نتيجة البحث</h3>
+                        <p><strong>👤 الاسم:</strong> ${student.name}</p>
+                        <p><strong>📚 الصف:</strong> ${student.grade}</p>
+                        <p><strong>📊 المجموع:</strong> ${student.total}</p>
+                        <p><strong>📈 النسبة المئوية:</strong> ${student.percentage}%</p>
+                        <p><strong>🏆 الترتيب:</strong> ${student.rank}</p>
+                        <p><strong>📜 الشهادة:</strong> <a href="${student.certificateLink}" target="_blank" style="color: #2980b9; text-decoration: none;">🎓 عرض الشهادة</a></p>
+                    `;
+                    resultDiv.classList.add('result-animation');
+                    playSuccessSound();
+                } else {
+                    resultDiv.innerHTML = '<p style="color:red;">❌ لم يتم العثور على شهادة لهذا الرقم المدني.</p>';
+                }
+            } catch (error) {
+                resultDiv.innerHTML = '<p style="color:red;">⚠️ حدث خطأ أثناء جلب البيانات.</p>';
+            }
+        }
+
+        function playSuccessSound() {
+            const audio = new Audio('https://www.soundjay.com/human/applause-01.mp3');
+            audio.play();
+        }
+    </script>
 </head>
 <body>
-    <div class="stars">
-        <!-- نجوم متحركة -->
-        <div class="star" style="top: 10%; left: 20%; width: 2px; height: 2px;"></div>
-        <div class="star" style="top: 30%; left: 50%; width: 3px; height: 3px;"></div>
-        <div class="star" style="top: 50%; left: 70%; width: 2px; height: 2px;"></div>
-        <div class="star" style="top: 70%; left: 40%; width: 3px; height: 3px;"></div>
-        <div class="star" style="top: 90%; left: 10%; width: 2px; height: 2px;"></div>
+    <!-- تأثيرات الخلفية ستضاف تلقائيا عبر الجافاسكربت -->
+    
+    <div class="header">
+        <h1>مدرسة أحمد بن حمود البوسعيدي للتعليم الأساسي</h1>
+        <h2>بوابة استعلام الشهادات لنتائج للعام الدراسي 2025 / 2026 م</h2>
+        <img src="https://d.top4top.io/p_34460rwxh1.jpeg" alt="شعار المدرسة" class="logo">
     </div>
-
-    <header>
-        <a href="https://mohdschool.github.io/7211/" class="schedule-btn">
-            <i class="fas fa-calendar-alt"></i> برنامج الجدول
-        </a>
-        <div class="header-content">
-            <img src="https://e.top4top.io/p_3302it4a31.jpg" alt="شعار المدرسة" class="logo">
-            <h1>جدول امتحانات نهاية الفصل الدراسي الأول</h1>
-            <h2>غدا الأربعاء 22 يناير 2025</h2>
-        </div>
-    </header>
-
-    <main>
-        <nav>
-            <a href="#"><i class="fas fa-home"></i> الرئيسية</a>
-            <a href="#"><i class="fas fa-info-circle"></i> عن المدرسة</a>
-            <a href="#"><i class="fas fa-envelope"></i> اتصل بنا</a>
-        </nav>
-
-        <div class="exam-info">
-            <h3><i class="fas fa-dna"></i> صفوف التاسع</h3>
-            <p>مادة: الأحياء</p>
-            <p>مدة الاختبار: ساعة ونصف</p>
-            <div class="timer" id="timer-biology-9">
-                <p><i class="fas fa-clock"></i> الوقت المتبقي لبدء الامتحان: <span id="countdown-biology-9"></span></p>
-                <p><i class="fas fa-hourglass-end"></i> الوقت المتبقي للانتهاء: <span id="remaining-biology-9"></span></p>
-            </div>
-            <div class="progress-bar">
-                <div id="progress-biology-9"></div>
-            </div>
-            <a href="https://cdn3.me-qr.com/pdf/83520329-7b20-445f-8d47-fc34b77746a1.pdf" class="test-btn">
-                <i class="fas fa-file-pdf"></i> نموذج اختبار سابق
-            </a>
-        </div>
-
-        <div class="exam-info">
-            <h3><i class="fas fa-dna"></i> صفوف العاشر</h3>
-            <p>مادة: الأحياء</p>
-            <p>مدة الاختبار: ساعتان</p>
-            <div class="timer" id="timer-biology-10">
-                <p><i class="fas fa-clock"></i> الوقت المتبقي لبدء الامتحان: <span id="countdown-biology-10"></span></p>
-                <p><i class="fas fa-hourglass-end"></i> الوقت المتبقي للانتهاء: <span id="remaining-biology-10"></span></p>
-            </div>
-            <div class="progress-bar">
-                <div id="progress-biology-10"></div>
-            </div>
-            <a href="https://cdn3.me-qr.com/pdf/aff0785f-516b-48fb-941f-28537ab7a419.pdf" class="test-btn">
-                <i class="fas fa-file-pdf"></i> نموذج اختبار تجريبي
-            </a>
-        </div>
-    </main>
-
-    <footer>
-        <p>مدرسة محمد بن سليمان الغافري - جميع الحقوق محفوظة &copy; 2025</p>
-    </footer>
-
-    <script>
-        // تاريخ ووقت بدء الامتحانات
-        const examDate = new Date('2025-01-22T08:00:00'); // يبدأ الساعة 8 صباحًا
-
-        // مدة الامتحانات بالمللي ثانية
-        const biology9Duration = 1.5 * 60 * 60 * 1000; // ساعة ونصف
-        const biology10Duration = 2 * 60 * 60 * 1000; // ساعتان
-
-        // عناصر HTML
-        const countdownBiology9 = document.getElementById('countdown-biology-9');
-        const remainingBiology9 = document.getElementById('remaining-biology-9');
-        const progressBiology9 = document.getElementById('progress-biology-9');
-        const countdownBiology10 = document.getElementById('countdown-biology-10');
-        const remainingBiology10 = document.getElementById('remaining-biology-10');
-        const progressBiology10 = document.getElementById('progress-biology-10');
-
-        function updateTimers() {
-            const now = new Date();
-            const timeUntilExam = examDate - now;
-
-            if (timeUntilExam > 0) {
-                // العد التنازلي لبدء الامتحان
-                const hours = Math.floor(timeUntilExam / (1000 * 60 * 60));
-                const minutes = Math.floor((timeUntilExam % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeUntilExam % (1000 * 60)) / 1000);
-
-                countdownBiology9.textContent = `${hours} ساعات ${minutes} دقائق ${seconds} ثواني`;
-                countdownBiology10.textContent = `${hours} ساعات ${minutes} دقائق ${seconds} ثواني`;
-
-                // إخفاء العد التنازلي للانتهاء
-                remainingBiology9.textContent = "لم يبدأ الامتحان بعد";
-                remainingBiology10.textContent = "لم يبدأ الامتحان بعد";
-
-                // تحديث شريط التقدم
-                progressBiology9.style.width = '0%';
-                progressBiology10.style.width = '0%';
-            } else {
-                // العد التنازلي للانتهاء
-                const biology9EndTime = examDate.getTime() + biology9Duration;
-                const biology10EndTime = examDate.getTime() + biology10Duration;
-
-                updateRemainingTime(biology9EndTime, remainingBiology9, progressBiology9, biology9Duration);
-                updateRemainingTime(biology10EndTime, remainingBiology10, progressBiology10, biology10Duration);
-
-                // إخفاء العد التنازلي لبدء الامتحان
-                countdownBiology9.textContent = "بدأ الامتحان";
-                countdownBiology10.textContent = "بدأ الامتحان";
-            }
-        }
-
-        function updateRemainingTime(endTime, element, progressBar, duration) {
-            const now = new Date();
-            const timeRemaining = endTime - now;
-
-            if (timeRemaining > 0) {
-                const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
-                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-                element.textContent = `${hours} ساعات ${minutes} دقائق ${seconds} ثواني`;
-
-                // تحديث شريط التقدم
-                const progress = ((duration - timeRemaining) / duration) * 100;
-                progressBar.style.width = `${progress}%`;
-            } else {
-                element.textContent = "انتهى الامتحان";
-                progressBar.style.width = '100%';
-            }
-        }
-
-        setInterval(updateTimers, 1000);
-        updateTimers(); // تحديث العدادات فور تحميل الصفحة
-    </script>
+    <div class="marquee"><span>نعمل بجدٍّ وصمتٍ وإتقانٍ ، لتُرفع شهاداتكم في أبهى حُلَلها…
+فكونوا على يقين أن الانتظار يُثمر ،
+وانتظروا تُضفَروا… ففرحة الإنجاز تلوح في الأفق</span></div>
+    <div class="container">
+        <label for="civilId">أدخل الرقم المدني للطالب:</label>
+        <input type="text" id="civilId" placeholder="مثال: 12345678">
+        <button onclick="searchCertificate()">🎓 عرض الشهادة</button>
+        <div id="result"></div>
+    </div>
+    <div class="footer">
+        &copy; 2026 - 2025 مدرسة أحمد بن حمود البوسعيدي جميع الحقوق محفوظة. <br>
+    </div>
 </body>
 </html>
